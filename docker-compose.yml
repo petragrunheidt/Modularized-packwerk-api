@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  modularized-api:
+    container_name: modularized-api
+    depends_on:
+      - postgres
+    image: ruby:3.2.2
+    working_dir: /modularized-api
+    volumes:
+      - .:/modularized-api
+      - ma-rubygems:/usr/local/bundle
+      - ma-gemconfig:/root/.local/share/gem
+    ports:
+      - "3100:3100"
+    networks:
+      - modularized-api
+    command: bash -c "bundle install && rails s -p '3100' -b '0.0.0.0'"
+
+  postgres:
+    container_name: ma-postgres
+    image: postgres
+    volumes:
+      - ma-pgdata:/var/lib/postgresql/data
+    networks:
+      - modularized-api
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    command: postgres
+    ports:
+      - "5432:5432"
+
+
+volumes:
+  ma-rubygems:
+  ma-pgdata:
+  ma-gemconfig:
+
+networks:
+  modularized-api: {}
