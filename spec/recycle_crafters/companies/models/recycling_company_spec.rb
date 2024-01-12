@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe RecycleCrafters::Companies::RecyclingCompany, type: :model do
+RSpec.describe RecyclingCompany, type: :model do
   let(:attributes) do
     %i[name
        registration_number
-       description
-      ]
+       description]
   end
 
   context 'validations' do

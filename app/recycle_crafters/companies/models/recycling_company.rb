@@ -1,4 +1,4 @@
-class RecycleCrafters::Companies::RecyclingCompany < ApplicationRecord
+class RecyclingCompany < ApplicationRecord
   self.table_name = 'recycling_companies'
 
   validates :name,

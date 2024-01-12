@@ -23,5 +23,16 @@ module ModularizedApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Resets rails autoload paths
+    config.autoload_paths = []
+
+    # Autoloads and eager loads desired paths
+    ['models', 'controllers', 'serializers'].each do |folder|
+      path = Rails.root.join('app', '*', '*', folder)
+
+      config.autoload_paths += Dir[path]
+      config.eager_load_paths += Dir[path]
+    end
   end
 end
