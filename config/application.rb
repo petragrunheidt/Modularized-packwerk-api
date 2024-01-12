@@ -28,11 +28,8 @@ module ModularizedApi
     config.autoload_paths = []
 
     # Autoloads and eager loads desired paths
-    ['models', 'controllers', 'serializers'].each do |folder|
-      path = Rails.root.join('app', '*', '*', folder)
 
-      config.autoload_paths += Dir[path]
-      config.eager_load_paths += Dir[path]
-    end
+    config.autoload_paths += Dir[Rails.root.join('domains', '**/')]
+    config.eager_load_paths += Dir[Rails.root.join('domains', '**/')]
   end
 end

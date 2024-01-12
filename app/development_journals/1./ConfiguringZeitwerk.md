@@ -43,12 +43,9 @@ To embrace a more modularized design while deviating from the default Rails conv
     config.autoload_paths = []
 
     # Autoloads and eager loads desired paths
-    ['models', 'controllers', 'serializers'].each do |folder|
-      path = Rails.root.join('app', '*', '*', folder)
 
-      config.autoload_paths += Dir[path]
-      config.eager_load_paths += Dir[path]
-    end
+    config.autoload_paths += Dir[Rails.root.join('domains', '**/')]
+    config.eager_load_paths += Dir[Rails.root.join('domains', '**/')]
 ```
 
 **In this configuration:**
@@ -61,15 +58,15 @@ This approach allows you to structure your Rails application in a more modulariz
 
 In the context of this project, the folder structure ends up like this:
 
-app/
+domains/
 └── domain/
-└── subdomain/
-└── models/
-└── example_model.rb
-controllers/
-└── example_controller.rb
-serializers/
-└── example_serializer.rb
+  └── subdomain/
+    └── models/
+    └── example_model.rb
+    controllers/
+    └── example_controller.rb
+    serializers/
+    └── example_serializer.rb
 
 Now, instead of the verbose approach i can call the models without namespaces:
 
