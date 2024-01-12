@@ -5,4 +5,6 @@ class RecyclingCompany < ApplicationRecord
             :registration_number,
             presence: true,
             uniqueness: true
+
+  has_many :rc_users
 end

@@ -10,7 +10,7 @@ exclude:
 - "{bin,node_modules,script,tmp,vendor}/**/*"
 
 # Patterns to find package configuration files
-package_paths: "**/"
+package_paths: "domains/**/"
 
 # List of custom associations, if any
 # custom_associations:
