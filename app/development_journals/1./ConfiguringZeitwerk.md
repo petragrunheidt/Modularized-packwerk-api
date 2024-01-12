@@ -22,9 +22,9 @@ While this convention is valid, it might become verbose, especially when applyin
 
 app/
 └── models/
-    └── domain/
-        └── subdomains/
-            └── example_model.rb
+└── domain/
+└── subdomains/
+└── example_model.rb
 
 ```rb
   class Domain::Subdomain::ExampleModel
@@ -50,6 +50,7 @@ To embrace a more modularized design while deviating from the default Rails conv
       config.eager_load_paths += Dir[path]
     end
 ```
+
 **In this configuration:**
 
 - `config.autoload_paths` is cleared to remove the default paths.
@@ -57,3 +58,35 @@ To embrace a more modularized design while deviating from the default Rails conv
 - The same paths are added to `config.eager_load_paths` for eager loading in production.
 
 This approach allows you to structure your Rails application in a more modularized way, organizing your code based on domains, subdomains, and specific functionalities.
+
+In the context of this project, the folder structure ends up like this:
+
+app/
+└── domain/
+└── subdomain/
+└── models/
+└── example_model.rb
+controllers/
+└── example_controller.rb
+serializers/
+└── example_serializer.rb
+
+Now, instead of the verbose approach i can call the models without namespaces:
+
+```rb
+  class ExampleModel
+    #Model like behaviour
+  end
+```
+
+While the simplification of class names is a consequence of this choice, it isn't the primary objective. The main purpose of this modularized approach is to prevent unintentional interference between different domains. The goal is to mitigate high coupling and promote cohesion between modules.
+
+### High Coupling and Cohesion Explanation
+
+- **High Coupling:** In software engineering, coupling refers to the degree of interdependence between different components or modules. High coupling occurs when modules are closely connected, making changes in one module affect others. This can lead to a lack of flexibility and increased difficulty in maintaining and extending the codebase.
+
+- **Cohesion:** Cohesion, on the other hand, refers to how closely the components within a module are related to each other. A module with high cohesion focuses on a single responsibility or functionality, making it self-contained and easier to understand. Cohesive modules often result in more maintainable and scalable code.
+
+The modularized approach aims to minimize high coupling by organizing code based on domains and subdomains. Each module (e.g., models, controllers, serializers) is encapsulated within its domain, reducing the likelihood of unintentional interactions and enhancing overall code maintainability.
+
+While adopting this structure serves as an encouragement for upholding code quality principles, Rails is inherently a permissive framework. In the upcoming article, we will delve into the implementation of a gem that seamlessly integrates with this modularized approach—the [Packwerk](https://github.com/Shopify/packwerk) gem.
