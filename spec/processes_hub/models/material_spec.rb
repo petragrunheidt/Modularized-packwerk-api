@@ -29,4 +29,9 @@ RSpec.describe Material, type: :model do
       end
     end
   end
+
+  context 'associations' do
+    it { is_expected.to have_many(:material_recycling_processes) }
+    it { is_expected.to have_many(:recycling_processes).through(:material_recycling_processes) }
+  end
 end

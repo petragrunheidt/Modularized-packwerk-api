@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_20_234849) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_21_171132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "material_recycling_processes", force: :cascade do |t|
+    t.bigint "material_id", null: false
+    t.bigint "recycling_process_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["material_id"], name: "index_material_recycling_processes_on_material_id"
+    t.index ["recycling_process_id"], name: "index_material_recycling_processes_on_recycling_process_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.integer "toxicity", default: 0
     t.boolean "organic"
     t.boolean "recyclable"
@@ -52,10 +61,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_234849) do
   create_table "recycling_companies", force: :cascade do |t|
     t.string "name"
     t.string "registration_number"
-    t.string "description"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "recycling_processes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "material_recycling_processes", "materials"
+  add_foreign_key "material_recycling_processes", "recycling_processes"
   add_foreign_key "rc_users", "recycling_companies"
 end
