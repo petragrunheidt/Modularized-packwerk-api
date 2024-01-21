@@ -3,6 +3,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     role { 0 }
     password { SecureRandom.alphanumeric(8) }
-    company
+    recycling_company
   end
 end

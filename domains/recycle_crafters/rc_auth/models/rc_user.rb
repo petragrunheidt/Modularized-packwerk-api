@@ -7,5 +7,8 @@ class RcUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  validates :email, :role, presence: true
+  validates :email, uniqueness: true
+
   belongs_to :recycling_company
 end

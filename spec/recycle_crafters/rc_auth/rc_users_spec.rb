@@ -15,11 +15,10 @@ RSpec.describe RcUser, type: :model do
     end
 
     it 'uniqueness' do
-      required_attributes = %i[email]
-
-      required_attributes.each do |attribute|
-        is_expected.to validate_uniqueness_of(attribute).on(:build)
-      end
+      create(:rc_user, email: 'email@email.com')
+      user = build(:rc_user, email: 'email@email.com')
+      
+      expect(user.valid?).to be_falsy
     end
 
     context 'associations' do

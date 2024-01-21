@@ -17,7 +17,7 @@ RSpec.describe Material, type: :model do
                                recyclable]
 
       required_attributes.each do |attribute|
-        is_expected.to validate_presence_of(attribute).on(:build)
+        is_expected.to validate_presence_of(attribute)
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe Material, type: :model do
       required_attributes = %i[name]
 
       required_attributes.each do |attribute|
-        is_expected.to validate_uniqueness_of(attribute).on(:build)
+        is_expected.to validate_uniqueness_of(attribute)
       end
     end
   end
