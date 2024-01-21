@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :rc_user, class: 'RcUser' do
     email { Faker::Internet.email }
     role { 0 }
-    password { SecureRandom.alphanumeric(8)  }
+    password { SecureRandom.alphanumeric(8) }
     company
   end
 end

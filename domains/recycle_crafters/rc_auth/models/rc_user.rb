@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RcUser < ActiveRecord::Base
+class RcUser < ApplicationRecord
   extend Devise::Models
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
