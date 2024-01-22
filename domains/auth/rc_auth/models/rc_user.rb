@@ -11,4 +11,6 @@ class RcUser < ApplicationRecord
   validates :email, uniqueness: true
 
   belongs_to :recycling_company
+
+  enum role: { unauthorized: 0, admin: 10 }
 end

@@ -17,7 +17,7 @@ RSpec.describe RcUser, type: :model do
     it 'uniqueness' do
       create(:rc_user, email: 'email@email.com')
       user = build(:rc_user, email: 'email@email.com')
-      
+
       expect(user.valid?).to be_falsy
     end
 

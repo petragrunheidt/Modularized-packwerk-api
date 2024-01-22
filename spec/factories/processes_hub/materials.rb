@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :material do
-    name { 'MyString' }
-    description { 'MyString' }
-    toxicity { 1 }
-    organic { false }
-    recyclable { false }
+    name { Faker::Commerce.product_name  }
+    description { Faker::Lorem.paragraph }
+    recyclable { [true, false].sample }
+    organic { [true, false].sample }
+    toxicity { rand(1..5) }
   end
 end

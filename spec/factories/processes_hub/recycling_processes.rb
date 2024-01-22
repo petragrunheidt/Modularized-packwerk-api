@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :recycling_process do
-    name { "MyString" }
-    description { "MyText" }
+    name { Faker::Commerce.product_name }
+    description { Faker::Lorem.paragraph(sentence_count: 50) }
   end
 end
